@@ -3,40 +3,28 @@ from ..models import Pokemon, PokemonSprites, PokemonType, PokemonTypeDetails
 
 API_URL = "https://pokeapi.co/api/v2/pokemon/"
 
-def get_all_pokemons():
-    """Obtiene todos los Pokémon desde la API (paginas)"""
-    pokemons = []
-    next_url = f"{API_URL}?limit=100"  # Puedes ajustar el límite a 100 o el máximo permitido por la API
-    
-    while next_url:
-        response = requests.get(next_url)
-        if response.status_code == 200:
-            data = response.json()
-            pokemons.extend(data["results"])
-            next_url = data["next"]  # El URL para la siguiente página de resultados
-        else:
-            break
-    
-    return pokemons
+def get_all_pokemons(limit=100, offset=0):
+    url = f"{API_URL}?limit={limit}&offset={offset}"
+    response = requests.get(url)
+    if response.status_code == 200:
+        return response.json()["results"]
+    return []
 
 def get_pokemon_details(pokemon_id):
-    """Obtiene detalles de un Pokémon por su ID"""
     response = requests.get(f"{API_URL}{pokemon_id}/")
     if response.status_code == 200:
         return response.json()
     return None
 
 def load_pokemons():
-    """Carga todos los Pokémon en la base de datos"""
     if Pokemon.objects.exists():
         return "Los Pokémon ya están cargados."
 
-    pokemons_data = get_all_pokemons()  # Obtiene todos los Pokémon
+    pokemons_data = get_all_pokemons()  
     loaded_count = 0
 
     for pokemon in pokemons_data:
-        # Obtener detalles del Pokémon por su URL
-        details = requests.get(pokemon["url"]).json()
+        details = get_pokemon_details(pokemon["name"])  
         if not details:
             continue
 
