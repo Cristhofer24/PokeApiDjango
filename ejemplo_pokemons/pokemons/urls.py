@@ -1,8 +1,10 @@
-from django.urls import path
-from .views import pokemon_list,pokemon_detail
+from django.urls import path # type: ignore
+from .views import pokemon_list, pokemon_detail, pokemon_create, pokemon_update, pokemon_delete
 
 urlpatterns = [
     path("", pokemon_list, name="pokemon_list"),
-    path("pokemon/<int:id>", pokemon_detail, name='pokemon_detail'),
-   
+    path("pokemon/<int:id>/", pokemon_detail, name='pokemon_detail'),  
+    path('pokemon/create/', pokemon_create, name='pokemon_create'),
+    path('pokemon/<int:id>/update/', pokemon_update, name='pokemon_update'),
+    path('pokemon/<int:id>/delete/', pokemon_delete, name='pokemon_delete'),
 ]

@@ -1,69 +1,99 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalle de {{ pokemon.name }}</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-    <div class="container py-5">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card shadow-lg rounded-3 border-3" 
-                    style="border-color: #ff5733; background-color: #fff3cd; 
-                           transition: transform 0.3s ease, box-shadow 0.3s ease; 
-                           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
-                    
-                    <div class="card-body text-center">
-                        <h1 class="card-title mb-3" style="color: #c70039; font-weight: bold;">{{ pokemon.name }}</h1>
-                        <img src="{{ pokemon.sprites.front_default }}" alt="{{ pokemon.name }}" 
-                            class="img-fluid mb-4" 
-                            style="max-width: 200px; height: auto; border: 4px solid #ff5733; 
-                                   border-radius: 10px; background-color: #ffeeba; padding: 10px; 
-                                   display: block; margin: 0 auto; transition: transform 0.3s ease;">
-                        
-                        <h5 class="card-text" style="color: #900c3f; font-size: 1.2rem;">Peso: {{ pokemon.weight }} kg</h5>
-                        <h5 class="card-text" style="color: #900c3f; font-size: 1.2rem;">Altura: {{ pokemon.height }} m</h5>
-                        
-                        <div class="mt-4">
-                            <a href="{% url 'pokemon_list' %}" 
-                               class="btn btn-lg px-4 py-2" 
-                               style="background-color: #ff5733; border-color: #c70039; 
-                                      color: white; font-weight: bold; border-radius: 8px; 
-                                      transition: background-color 0.3s ease, transform 0.2s ease; 
-                                      box-shadow: 0 4px 10px rgba(255, 87, 51, 0.3);">
-                                Volver
-                            </a>
-                        </div>
-                    </div>
+{% block title %} {% endblock %}
+
+{% block content %}
+
+    <div class="container-fluid py-5" 
+         style="background-color: #f8f9fa; min-height: 100vh; display: flex; align-items: center; justify-content: center;">
+        <!-- Contenedor centrado -->
+        <div class="card shadow-lg rounded-4 overflow-hidden" 
+             style="max-width: 460px; width: 90%; height: 500px; background: linear-gradient(135deg, #ffecb3, #fff3e0); 
+                    border: 2px solid #ff5733; border-radius: 25px; 
+                    transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            
+            <div class="card-body d-flex flex-column justify-content-center text-center p-5">
+                <!-- Título -->
+                <h1 class="card-title mb-5" 
+                    style="color: #c70039; font-weight: bold; font-family: 'Arial', sans-serif; font-size: 2rem; padding-left: 15px;">
+                    {{ pokemon.name }}
+                </h1>
+
+                <!-- Imagen -->
+                <img src="{{ pokemon.sprites.front_default }}" alt="{{ pokemon.name }}" 
+                     class="img-fluid mb-5" 
+                     style="max-width: 220px; height: auto; border: 5px solid #ff5733; 
+                            border-radius: 20px; background-color: #ffeeba; padding: 12px; 
+                            display: block; margin: 0 auto; transition: transform 0.3s ease;">
+                
+                <!-- Información -->
+                <div class="d-flex flex-column gap-4 mb-5" style="padding-left: 15px;">
+                    <p class="card-text m-0" 
+                       style="color: #900c3f; font-size: 1.4rem; font-family: 'Arial', sans-serif;">
+                        <i class="fas fa-weight-hanging me-2" style="color: #c70039;"></i>
+                        Peso: {{ pokemon.weight }} kg
+                    </p>
+                    <p class="card-text m-0" 
+                       style="color: #900c3f; font-size: 1.4rem; font-family: 'Arial', sans-serif;">
+                        <i class="fas fa-ruler-vertical me-2" style="color: #c70039;"></i>
+                        Altura: {{ pokemon.height }} m
+                    </p>
+                </div>
+
+                <!-- Botones -->
+                <div class="d-grid gap-3 mt-auto" style="gap: 3px; text-align: center; justify-content: center; padding: 50px;">
+                    <!-- Botón Editar -->
+                    <a href="{% url 'pokemon_update' pokemon.id %}" class="btn btn-lg rounded-pill" 
+                       style="background-color: #28a745; color: white; font-weight: bold; padding: 14px 28px; margin-bottom: 25px;
+                              transition: transform 0.3s ease, box-shadow 0.3s ease; box-shadow: 0 6px 12px rgba(0, 128, 0, 0.2);">
+                        <i class="fas fa-edit me-2"></i> Editar
+                    </a>
+                
+                    <!-- Botón Eliminar -->
+                    <a href="{% url 'pokemon_delete' pokemon.id %}" class="btn btn-lg rounded-pill" 
+                       style="background-color: #dc3545; color: white; font-weight: bold; padding: 14px 28px; 
+                              transition: transform 0.3s ease, box-shadow 0.3s ease; box-shadow: 0 6px 12px rgba(255, 0, 0, 0.2);">
+                        <i class="fas fa-trash-alt me-2"></i> Eliminar
+                    </a>
+                
+                    <!-- Espaciado adicional antes del botón Volver -->
+                    <div style="height: 30px;"></div>
+                
+                    <!-- Botón Volver -->
+                    <a href="{% url 'pokemon_list' %}" class="btn btn-lg rounded-pill" 
+                       style="background-color: #ff5733; border-color: #c70039; color: white; font-weight: bold; padding: 14px 28px; 
+                              transition: background-color 0.3s ease, transform 0.2s ease; box-shadow: 0 6px 12px rgba(255, 87, 51, 0.3);">
+                        <i class="fas fa-arrow-left me-2"></i> Volver
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            let button = document.querySelector(".btn");
+{% endblock %}
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Animación de botones
+        let buttons = document.querySelectorAll(".btn");
+        buttons.forEach(button => {
             button.addEventListener("mouseover", function() {
-                this.style.transform = "scale(1.1)";
-                this.style.boxShadow = "0 6px 15px rgba(255, 87, 51, 0.5)";
+                this.style.transform = "scale(1.05)";
+                this.style.boxShadow = "0 8px 16px rgba(255, 87, 51, 0.5)";
             });
             button.addEventListener("mouseout", function() {
                 this.style.transform = "scale(1)";
-                this.style.boxShadow = "0 4px 10px rgba(255, 87, 51, 0.3)";
-            });
-
-            let card = document.querySelector(".card");
-            card.addEventListener("mouseover", function() {
-                this.style.transform = "scale(1.05)";
-                this.style.boxShadow = "0 8px 20px rgba(0, 0, 0, 0.2)";
-            });
-            card.addEventListener("mouseout", function() {
-                this.style.transform = "scale(1)";
-                this.style.boxShadow = "0 4px 12px rgba(0, 0, 0, 0.1)";
+                this.style.boxShadow = "0 6px 12px rgba(255, 87, 51, 0.3)";
             });
         });
-    </script>
-</body>
-</html>
+
+        // Animación de tarjeta
+        let card = document.querySelector(".card");
+        card.addEventListener("mouseover", function() {
+            this.style.transform = "scale(1.03)";
+            this.style.boxShadow = "0 10px 20px rgba(0, 0, 0, 0.15)";
+        });
+        card.addEventListener("mouseout", function() {
+            this.style.transform = "scale(1)";
+            this.style.boxShadow = "0 6px 12px rgba(0, 0, 0, 0.1)";
+        });
+    });
+</script>

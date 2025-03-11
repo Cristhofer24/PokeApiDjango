@@ -35,7 +35,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\USER\Documents\ITSQMET\Cuarto Nivel\QA\PokeApiMVT\venv"
+VIRTUAL_ENV="C:\Users\ItsqmetEstudiantes\Desktop\PokeApiDjango\venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

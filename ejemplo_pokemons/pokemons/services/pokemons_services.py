@@ -1,5 +1,5 @@
 import requests
-from ..models import Pokemon, PokemonSprites, PokemonType, PokemonTypeDetails
+from ..models import Pokemon, PokemonSprites, PokemonType, PokemonTypeInfo  # Changed PokemonTypeDetails to PokemonTypeInfo
 
 API_URL = "https://pokeapi.co/api/v2/pokemon/"
 
@@ -20,15 +20,15 @@ def load_pokemons():
     if Pokemon.objects.exists():
         return "Los Pokémon ya están cargados."
 
-    pokemons_data = get_all_pokemons()  
+    pokemons_data = get_all_pokemons()
     loaded_count = 0
 
     for pokemon in pokemons_data:
-        details = get_pokemon_details(pokemon["name"])  
+        details = get_pokemon_details(pokemon["name"])
         if not details:
             continue
 
-        # Crear sprites
+        # Create sprites
         sprites = PokemonSprites.objects.create(
             front_default=details["sprites"].get("front_default"),
             front_shiny=details["sprites"].get("front_shiny"),
@@ -40,7 +40,7 @@ def load_pokemons():
             back_shiny_female=details["sprites"].get("back_shiny_female"),
         )
 
-        # Crear Pokémon
+        # Create Pokémon
         pokemon_obj = Pokemon.objects.create(
             id=details["id"],
             name=details["name"],
@@ -49,15 +49,15 @@ def load_pokemons():
             sprites=sprites
         )
 
-        # Guardar tipos
+        # Save types
         for type_data in details.get("types", []):
-            type_detail, _ = PokemonTypeDetails.objects.get_or_create(
+            type_detail, _ = PokemonTypeInfo.objects.get_or_create(
                 name=type_data["type"]["name"],
                 url=type_data["type"]["url"]
             )
             PokemonType.objects.create(
                 slot=type_data["slot"],
-                type=type_detail,
+                type_info=type_detail,  # Fixed to use type_info and not type
                 pokemon=pokemon_obj
             )
 
