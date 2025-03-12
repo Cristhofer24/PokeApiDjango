@@ -1,0 +1,83 @@
+registro usuario- empleado
+
+/* Estilos generales */
+
+css
+
+/* Estilos generales */
+body {
+  background-color: #f9f9f9;
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 900px;
+  margin-top: 0; /* Eliminando margen superior */
+}
+
+/* Formulario */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+input {
+  background-color: #f9f9f9;
+  padding: 12px;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  transition: all 0.3s ease;
+}
+
+input:focus {
+  border-color: #1e3a8a;
+  box-shadow: 0 0 10px rgba(30, 58, 138, 0.3);
+}
+
+button {
+  background: linear-gradient(90deg, rgba(30, 58, 138, 1) 0%, rgb(91, 124, 194) 100%);
+  border-radius: 10px;
+  font-size: 1.2rem;
+  padding: 15px 30px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+  background: linear-gradient(90deg, rgba(30, 58, 138, 1) 10%, rgb(130, 124, 218) 90%);
+  transform: scale(1.05);
+}
+
+/* Estilos para la carta */
+.card {
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background: white;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Efectos de hover para la carta */
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Ajustes adicionales */
+section {
+  padding-top: 12px; /* Menos espacio en la parte superior */
+  padding-bottom: 12px; /* Menos espacio en la parte inferior */
+}
+
+h2, h3 {
+  font-family: 'Poppins', sans-serif;
+}

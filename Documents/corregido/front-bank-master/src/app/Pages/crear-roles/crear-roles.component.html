@@ -1,0 +1,109 @@
+
+<!-- Navbar -->
+<nav class="bg-blue-900 p-4 text-white shadow-md">
+    <div class="container mx-auto flex justify-between items-center">
+        <h1 class="text-3xl font-bold">Prestabank</h1>
+        <ul class="flex gap-6"></ul>
+    </div>
+</nav>
+
+<!-- Formulario para crear nuevos roles -->
+<div class="container form-container">
+  <h2>Crear Nuevo Rol</h2>
+  <div class="mb-6">
+      <a class="return-button">Retornar</a>
+  </div>
+  <form id="formNuevoRol" class="space-y-4">
+      <div>
+          <label  class="block text-sm">ID:</label>
+          <input type="text" id="rolId" class="w-full p-2 border border-gray-300 rounded" placeholder="Ingrese el ID del rol" title="Ingrese el ID del rol">
+      </div>
+      <div>
+          <label class="block text-sm">Username:</label>
+          <input type="text" id="rolUsername" class="w-full p-2 border border-gray-300 rounded" placeholder="Ingrese el username del rol" title="Ingrese el username del rol">
+      </div>
+      <div>
+          <label class="block text-sm">Password:</label>
+          <input type="password" id="rolPassword" class="w-full p-2 border border-gray-300 rounded" placeholder="Ingrese la contrasena del rol" title="Ingrese la contrasena del rol">
+      </div>
+      <div>
+          <label class="block text-sm">Rol:</label>
+          <select id="rolTipo" class="w-full p-2 border border-gray-300 rounded" title="Seleccione el tipo de rol">
+              <option value="Cliente">Cliente</option>
+              <option value="Administrador">Administrador</option>
+          </select>
+      </div>
+      <button type="button" class="create-role-button" onclick="agregarRol()">Crear Rol</button>
+  </form>
+</div>
+
+<!-- Tabla de Roles -->
+<div class="container">
+  <h2>Roles Registrados</h2>
+  <div class="overflow-x-auto">
+      <table class="roles-table">
+          <thead>
+              <tr>
+                  <th>ID</th>
+                  <th>Username</th>
+                  <th>Rol</th>
+                  <th>Acciones</th>
+              </tr>
+          </thead>
+          <tbody id="rolesTabla">
+              <!-- Fila de ejemplo 1 -->
+              <tr>
+                  <td>1</td>
+                  <td>admin_user</td>
+                  <td>Administrador</td>
+                  <td>
+                      <button class="action-button edit-button">Editar</button>
+                      <button class="action-button delete-button">Eliminar</button>
+                  </td>
+              </tr>
+              <!-- Fila de ejemplo 2 -->
+              <tr>
+                  <td>2</td>
+                  <td>cliente_user</td>
+                  <td>Cliente</td>
+                  <td>
+                      <button class="action-button edit-button">Editar</button>
+                      <button class="action-button delete-button">Eliminar</button>
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+      <p>&copy; 2025 Prestabank. Todos los derechos reservados.</p>
+</footer>
+
+<script>
+    function agregarRol() {
+        let id = document.getElementById("rolId").value;
+        let username = document.getElementById("rolUsername").value;
+        let rol = document.getElementById("rolTipo").value;
+
+        if (id && username && rol) {
+            let tabla = document.getElementById("rolesTabla");
+            let fila = tabla.insertRow();
+            fila.innerHTML = `
+                <td class="p-3 border">${id}</td>
+                <td class="p-3 border">${username}</td>
+                <td class="p-3 border">${rol}</td>
+                <td class="p-3 border flex gap-2">
+                    <button class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600" onclick="editarRol(this)">Editar</button>
+                    <button class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700" onclick="eliminarRol(this)">Eliminar</button>
+                </td>`;
+        }
+    }
+
+    function eliminarRol(button) {
+        if (confirm("¿Está seguro de eliminar este rol?")) {
+            button.closest("tr").remove();
+        }
+    }
+</script>

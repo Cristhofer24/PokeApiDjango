@@ -1,0 +1,236 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #f8f9fa, #eef2ff);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-title {
+  text-align: center;
+  margin-bottom: 40px;
+  animation: fadeInDown 1.5s ease-in-out;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #2575fc;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #555;
+  opacity: 0.9;
+}
+
+.container {
+  display: flex;
+  width: 900px;
+  max-width: 90%;
+  height: 500px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  margin: auto;
+}
+
+.left {
+  width: 50%;
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.form {
+  width: 100%;
+  max-width: 380px;
+}
+
+.form h1 {
+  text-align: center;
+  color: #0d45a7;
+  margin-bottom: 30px;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.input-block {
+  position: relative;
+  margin-bottom: 25px;
+}
+
+.input {
+  width: 100%;
+  padding: 14px;
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease;
+  background-color: #f9f9f9;
+}
+
+.input:focus {
+  border-color: #2575fc;
+  box-shadow: 0 0 10px rgba(37, 117, 252, 0.3);
+}
+
+label {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+  font-size: 14px;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.input:focus + label,
+.input:not(:placeholder-shown) + label {
+  top: -10px;
+  font-size: 12px;
+  color: #2575fc;
+  background: #fff;
+  padding: 0 8px;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 14px;
+  background-image: linear-gradient(135deg, #0e0bc4, #2575fc);
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(37, 117, 252, 0.3);
+}
+
+.submit-btn:hover {
+  background-image: linear-gradient(135deg, #2575fc, #0e0bc4);
+  box-shadow: 0 5px 20px rgba(37, 117, 252, 0.5);
+  transform: translateY(-2px);
+}
+
+.register {
+  text-align: center;
+  margin-top: 25px;
+  font-size: 14px;
+  color: #555;
+}
+
+.register a {
+  color: #2575fc;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.register a:hover {
+  color: #15069e;
+}
+
+.right {
+  width: 50%;
+  background: url('https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80') no-repeat center center/cover;
+  position: relative;
+  overflow: hidden;
+}
+
+.right::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  z-index: 2;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+.overlay h2 {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.overlay p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#error-msg {
+  color: #ff4444;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 15px;
+  display: none;
+}
+
+footer {
+  background: #17327a;
+  color: white;
+  text-align: center;
+  padding: 12px 0;
+  font-size: 14px;
+  margin-top: 20px;
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+}

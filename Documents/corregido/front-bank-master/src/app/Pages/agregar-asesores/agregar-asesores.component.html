@@ -1,0 +1,120 @@
+
+<!-- Navbar -->
+<nav class="bg-gradient-to-r from-blue-900 to-indigo-800 p-6 shadow-xl">
+    <div class="container mx-auto flex justify-between items-center">
+        <h1 class="text-3xl font-extrabold text-white">Prestabank</h1>
+        <ul class="flex space-x-8 text-white font-semibold">
+            <li>
+                <form  method="post" id="logout-form">
+                    <button type="submit" class="hover:text-gray-200 transition-colors focus:outline-none">
+                        Cerrar Sesión
+                    </button>
+                </form>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Contenedor principal -->
+<div class="main-container bg-white rounded-2xl shadow-lg mx-auto my-8 p-8 max-w-6xl">
+  <h1 class="main-title text-3xl font-bold text-blue-700 mb-6 text-center">Gestión de Clientes</h1>
+  <!-- Botones de Acción -->
+  <div class="button-container flex justify-between mb-8">
+      <a  class="create-client-button bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300">
+          Crear Cliente
+      </a>
+      <button class="assign-role-button bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300">
+          Asignar Rol
+      </button>
+  </div>
+  <!-- Sección de Clientes Registrados -->
+  <h2 class="section-title text-2xl font-bold text-gray-800 mb-4">Clientes Registrados</h2>
+  <div class="table-container overflow-x-auto rounded-lg border border-gray-200">
+      <table class="client-table w-full">
+          <thead class="table-header bg-blue-600 text-white">
+              <tr>
+                  <th class="table-cell py-3 px-4 text-left">ID</th>
+                  <th class="table-cell py-3 px-4 text-left">Cédula</th>
+                  <th class="table-cell py-3 px-4 text-left">Nombres</th>
+                  <th class="table-cell py-3 px-4 text-left">Correo</th>
+                  <th class="table-cell py-3 px-4 text-left">Dirección</th>
+                  <th class="table-cell py-3 px-4 text-left">Teléfono</th>
+                  <th class="table-cell py-3 px-4 text-left">Acciones</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr class="table-row bg-gray-50 hover:bg-gray-200 transition-colors duration-300">
+                  <td class="table-cell py-3 px-4" th:text="${cliente.id}"></td>
+                  <td class="table-cell py-3 px-4" th:text="${cliente.cedula}"></td>
+                  <td class="table-cell py-3 px-4" th:text="${cliente.nombre}"></td>
+                  <td class="table-cell py-3 px-4" th:text="${cliente.correo}"></td>
+                  <td class="table-cell py-3 px-4" th:text="${cliente.direccion}"></td>
+                  <td class="table-cell py-3 px-4" th:text="${cliente.telefono}"></td>
+                  <td class="table-cell py-3 px-4 actions-cell">
+                      <a th:href="@{/editarCliente/{id}(id=${cliente.id})}" class="edit-button bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-1 px-3 rounded-md transition-all duration-300">
+                          Editar
+                      </a>
+                      <form method="post" class="inline">
+                          <button type="submit" class="delete-button bg-red-500 hover:bg-red-600 text-white font-semibold py-1 px-3 rounded-md transition-all duration-300 ml-2" onclick="return confirm('¿Estás seguro de eliminar este cliente?');">
+                              Eliminar
+                          </button>
+                      </form>
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
+  <!-- Sección de Transacciones -->
+  <h2 class="section-title text-2xl font-bold text-gray-800 mt-8 mb-4">Transacciones</h2>
+  <div class="table-container overflow-x-auto rounded-lg border border-gray-200">
+      <table class="transaction-table w-full">
+          <thead class="table-header bg-blue-600 text-white">
+              <tr>
+                  <th class="table-cell py-3 px-4 text-left">ID Transacción</th>
+                  <th class="table-cell py-3 px-4 text-left">Fecha</th>
+                  <th class="table-cell py-3 px-4 text-left">Monto</th>
+                  <th class="table-cell py-3 px-4 text-left">Estado</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr class="table-row bg-gray-50 hover:bg-gray-200 transition-colors duration-300">
+                  <td class="table-cell py-3 px-4">#12345</td>
+                  <td class="table-cell py-3 px-4">01/01/2025</td>
+                  <td class="table-cell py-3 px-4">$100</td>
+                  <td class="table-cell py-3 px-4">Completada</td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
+</div>
+
+
+
+<script>
+    function abrirModal() {
+        document.getElementById('modalEditar').classList.remove('hidden');
+    }
+
+    function cerrarModal() {
+        document.getElementById('modalEditar').classList.add('hidden');
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("editAsesor").addEventListener("change", function() {
+            const desc = this.value === "asesor1" ? "Experto en préstamos" : "Especialista en cuentas";
+            document.getElementById("descripcionAsesor").innerText = desc;
+
+             <td class="p-3 border flex gap-2">
+                                <button class="bg-yellow-500 text-white px-3 py-1 rounded" onclick="editarCliente('${cliente.nombre}', '${cliente.email}', '${cliente.telefono}')">Editar</button>
+                                <button class="bg-red-600 text-white px-3 py-1 rounded" onclick="eliminarCliente(this)">Eliminar</button>
+                            </td>
+        });
+    });
+</script>
+<!-- Footer -->
+<footer class="footer bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-6">
+    <div class="footer-content text-center">
+        <p>&copy; 2025 Prestabank. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+

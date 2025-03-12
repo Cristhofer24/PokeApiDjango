@@ -1,0 +1,63 @@
+
+
+  <div class="main-container">
+    <div class="form-container">
+      <div class="image-section">
+        <div class="overlay">
+          <h2>Únete a Prestabank</h2>
+          <p>Aprovecha todos los beneficios financieros que tenemos para ti.</p>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h2>Registro en Prestabank</h2>
+        <form >
+          <input type="hidden" th:field="*{id}" id="id">
+          <input type="text" id="clienteId" name="clienteId" placeholder="ID del Cliente"  [(ngModel)]="cuenta.fkCliente" readonly/>
+
+          <div class="input-group">
+            <label for="tipoCuenta">Tipo de Cuenta</label>
+            <select name="tipoCuenta" id="tipoCuenta"
+              onchange="window.location.href='/generarValoresCuenta?tipoCuenta=' + this.value">
+              <option value="">Seleccione un tipo de cuenta</option>
+              <option value="Ahorro" >Ahorro</option>
+              <option value="Corriente">Corriente</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label for="numeroCuenta">Número de Cuenta</label>
+            <input type="text"  id="numeroCuenta" readonly>
+          </div>
+
+          <div class="input-group">
+            <label for="saldo">Saldo</label>
+            <input type="text"  id="saldo">
+          </div>
+
+          <div class="input-group">
+            <label for="fechaApertura">Fecha de Apertura</label>
+            <input type="date"  id="fechaApertura" readonly>
+          </div>
+
+          <div class="input-group">
+            <label for="fechaCaducidad">Fecha de Vencimiento</label>
+            <input type="date"  id="fechaCaducidad" readonly>
+          </div>
+
+          <div class="input-group">
+            <label for="estado">Estado de Cuenta</label>
+            <input type="text"  id="estado" readonly>
+          </div>
+
+          <button type="submit" class="register-btn">Registrar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Prestabank. Todos los derechos reservados.</p>
+  </footer>
+
+
