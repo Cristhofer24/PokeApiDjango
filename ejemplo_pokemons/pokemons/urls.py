@@ -1,5 +1,5 @@
 from django.urls import path # type: ignore
-from .views import pokemon_list, pokemon_detail, pokemon_create, pokemon_update, pokemon_delete
+from .views import *
 
 urlpatterns = [
     path("", pokemon_list, name="pokemon_list"),

@@ -1,6 +1,5 @@
-from django.db import models # type: ignore
+from django.db import models
 
-# Create your models here.
 class PokemonSprites(models.Model):
     front_default = models.URLField(null=True, blank=True)
     front_shiny = models.URLField(null=True, blank=True)
@@ -35,7 +34,7 @@ class Pokemon(models.Model):
     name = models.CharField(max_length=100, unique=True)
     weight = models.FloatField()
     height = models.FloatField()
-    sprites = models.OneToOneField(PokemonSprites, on_delete=models.CASCADE, null=True, blank=True)
+    sprites = models.OneToOneField(PokemonSprites, on_delete=models.CASCADE)
     types = models.ManyToManyField(PokemonType, related_name="pokemons")
 
     def __str__(self):
